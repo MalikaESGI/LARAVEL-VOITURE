@@ -23,6 +23,7 @@ Route::middleware('auth')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('voiture', App\Http\Controllers\Admin\VoitureController::class);
     Route::resource('user', App\Http\Controllers\Admin\GestionUserController::class);
+    Route::resource('category', App\Http\Controllers\Admin\CategoryVoitureController::class);
    
 });
 

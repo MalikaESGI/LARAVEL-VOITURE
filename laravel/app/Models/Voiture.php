@@ -16,5 +16,11 @@ class Voiture extends Model
         'plaque_dimmatriculation',
         'nombre_de_place',
         'prix_location_journalier',
+        'category_id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');  // Utilisez le nom de la classe 'Categorie'
+    }
 }

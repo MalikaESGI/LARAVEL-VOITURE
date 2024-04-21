@@ -18,6 +18,13 @@ return new class extends Migration
             $table->string('plaque_dimmatriculation');
             $table->integer('nombre_de_place');
             $table->integer('prix_location_journalier');
+
+            // Ajouter cette ligne pour créer la colonne `category_id` avant de définir la clé étrangère
+            $table->unsignedBigInteger('category_id')->nullable();
+
+            // Ensuite, définir la clé étrangère
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+ 
             $table->boolean('reserver')->default(false);
             $table->timestamps();
         });
