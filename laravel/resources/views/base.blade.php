@@ -47,7 +47,7 @@
           <ul class="dropdown-menu ">
           @if(!empty(auth()->user()))
             <li><a class="dropdown-item" href="/profile">Profile</a></li>
-            <li><a class="dropdown-item" href="{{route}}">Favories</a></li>
+            <li><a class="dropdown-item" href="{{route('favorites.show')}}">Favories</a></li>
              <form action="/logout" method="POST">
                     @csrf
                     <button type="submit" class="dropdown-item">Déconnexion</button>
