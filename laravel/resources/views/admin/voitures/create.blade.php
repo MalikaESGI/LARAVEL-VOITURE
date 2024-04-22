@@ -6,7 +6,7 @@
 
 <h1>@yield('titre')</h1>
 
-<form class="vstack gap-2" action="{{ route($voiture->exists ? 'admin.voiture.update' : 'admin.voiture.store', ['voiture' => $voiture->id ?? null]) }}" method="post">
+<form class="vstack gap-2" action="{{ route($voiture->exists ? 'admin.voiture.update' : 'admin.voiture.store', ['voiture' => $voiture->id ?? null]) }}" method="post"  enctype="multipart/form-data">
     @csrf
     @if($voiture->exists)
         @method('PUT')
@@ -29,6 +29,14 @@
                     <option value="{{ $categorie->id }}" {{ $voiture->category_id == $categorie->id ? 'selected' : '' }}>{{ $categorie->name }}</option>
                 @endforeach
             </select>
+        </div>
+
+               <div class="form-group">
+        <label for="image">Image</label>
+        <input type="file" class="form-control" id="image" name="image">
+        @error('image')
+        {{$message}}
+        @enderror
         </div>
     </div>
 

@@ -33,7 +33,17 @@ class VoitureController extends Controller
      */
     public function store(VoitureFormeRequest $request, Voiture $voiture)
     {
-        Voiture::create($request->validated());
+        $validatedData = $request->validated();
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->extension();
+            $image->move(public_path('images'), $imageName);
+            // Enregistrez le chemin de l'image dans les données validées
+            $validatedData['image'] = 'images/'.$imageName;
+        }
+
+        Voiture::create($validatedData);
 
         return redirect()->route('admin.voiture.index')->with('success', 'La voiture a été bien créé');
 
@@ -56,8 +66,18 @@ class VoitureController extends Controller
      * Update the specified resource in storage.
      */
     public function update(VoitureFormeRequest $request, Voiture $voiture)
-    {
-        $voiture->update($request->validated());
+    { 
+        $validatedData = $request->validated();
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time().'.'.$image->extension();
+            $image->move(public_path('images'), $imageName);
+            
+            $validatedData['image'] = 'images/'.$imageName;
+        }
+
+        $voiture->update($validatedData);
         return redirect()->route('admin.voiture.index')->with('success','la voiture a été bien modifiée');
     }
 

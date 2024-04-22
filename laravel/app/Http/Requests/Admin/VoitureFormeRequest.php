@@ -22,12 +22,13 @@ class VoitureFormeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'marque' => ['required','string','min:4'],
-            'model' => ['required','string','min:4'],
+            'marque' => ['required','string','min:2'],
+            'model' => ['required','string','min:2'],
             'plaque_dimmatriculation'=> ['required','string','min:6'],
             'nombre_de_place'=> ['required','integer','min:2'],
             'prix_location_journalier' =>['required','integer','min:0'],
             'category_id' =>['required', 'exists:categories,id'],
+            'image' =>['image', 'max:2000', 'required']
         ];
     }
 }

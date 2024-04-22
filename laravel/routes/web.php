@@ -1,11 +1,22 @@
 <?php
 
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VoitureController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('home')->name('home.index');
+// });
+
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/voitures', [VoitureController::class,'index'])->name('voiture.index');
+Route::get('/voitures/{voiture}', [VoitureController::class,'show'])->name('voiture.show');
+
+// Dans routes/web.php
+Route::post('/favorites/toggle', [FavoriteController::class, 'toggleFavorite'])->name('favorites.toggle');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -16,8 +16,11 @@ class Voiture extends Model
         'plaque_dimmatriculation',
         'nombre_de_place',
         'prix_location_journalier',
-        'category_id'
+        'category_id', 
+        'image',
     ];
+
+
 
     public function category()
     {
