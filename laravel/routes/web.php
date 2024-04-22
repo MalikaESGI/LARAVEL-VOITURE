@@ -14,9 +14,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/voitures', [VoitureController::class,'index'])->name('voiture.index');
 Route::get('/voitures/{voiture}', [VoitureController::class,'show'])->name('voiture.show');
 
-// Dans routes/web.php
+
 Route::post('/favorites/toggle', [FavoriteController::class, 'toggleFavorite'])->name('favorites.toggle');
 
+Route::get('/favorites', [FavoriteController::class, 'showFavorites'])->name('favorites.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,10 +32,10 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::resource('voiture', App\Http\Controllers\Admin\VoitureController::class);
-    Route::resource('user', App\Http\Controllers\Admin\GestionUserController::class);
-    Route::resource('category', App\Http\Controllers\Admin\CategoryVoitureController::class);
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
+    Route::resource('voiture', App\Http\Controllers\Admin\VoitureController::class)->middleware('admin');
+    Route::resource('user', App\Http\Controllers\Admin\GestionUserController::class)->middleware('admin');
+    Route::resource('category', App\Http\Controllers\Admin\CategoryVoitureController::class)->middleware('admin');
    
 });
 

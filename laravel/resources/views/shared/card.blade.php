@@ -1,6 +1,6 @@
 <head><meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-
+ 
 <div class="card" style="width: 18rem;">
   <span class="favorite-btn" data-id="{{$voiture->id}}" onclick="toggleFavorite({{$voiture->id}})">&#x2665;</span> <!-- Bouton de favoris -->
   <img src="{{$voiture->image}}" class="card-img-top" alt="voiture" style="width:auto;height:200px;">
@@ -19,6 +19,10 @@
     cursor: pointer; 
     position:absolute;
   }
+  .favorite-btn.favorited {
+    color: red; /* Indique que la voiture est dans les favoris */
+}
+
 </style>
 
 

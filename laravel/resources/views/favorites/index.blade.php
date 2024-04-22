@@ -1,9 +1,8 @@
-{{-- resources/views/favorites/index.blade.php --}}
 @extends('base')
 
 @section('content')
 <div class="container">
-    <h1>Mes Voitures Favorites</h1>
+<h1>Mes Voitures Favorites</h1>
     @foreach ($favorites as $favorite)
         <div class="card" style="width: 18rem;">
             <img src="{{ $favorite->voiture->image }}" class="card-img-top" alt="voiture">

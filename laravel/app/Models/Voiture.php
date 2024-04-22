@@ -26,4 +26,11 @@ class Voiture extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');  // Utilisez le nom de la classe 'Categorie'
     }
+
+    public function favoritedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'voiture_id', 'user_id');
+    }
+    
+
 }
