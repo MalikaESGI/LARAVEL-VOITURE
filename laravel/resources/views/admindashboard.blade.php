@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('titre') | U'CARS</title>
+    <title>@yield('titre') | NomSite</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -82,67 +80,44 @@
 
 </head>
 
-<body>
 <header>
     <nav class="navbar navbar-expand-lg">
         <div class="container mx-auto">
-         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo" style="width:140px;height:90px">
-            
-  
+            <a class="navbar-brand text-white text-2xl font-bold" href="#">U'CARS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon text-white"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ml-auto space-x-4">
-                    @if(auth()->check() && auth()->user()->role === 'admin')
                     <li class="nav-item">
-                        <a class="nav-link text-white hover:text-gray-300" href="{{route('admin.admin.dashboard')}}">Backoffice</a>
-                    </li>
-                    @endif
-                    <li class="nav-item">
-                        <a class="nav-link active text-white hover:text-gray-300" aria-current="page" href="{{route('home.index')}}">Home</a>
+                        <a class="nav-link active text-white hover:text-gray-300" aria-current="page" href="{{route('home.index')}}">Revenir sur le site</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white hover:text-gray-300" href="{{route('voiture.index')}}">Voitures</a>
+                        <a class="nav-link text-white hover:text-gray-300" href="{{route('admin.user.index')}}">Gestion des Utilisateur</a>
                     </li>
-                
-                    @if(!empty(auth()->user()))
-                        <li class="nav-item">
-                            <a class="nav-link text-white hover:text-gray-300" href="/profile">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white hover:text-gray-300" href="{{route('favorites.show')}}">Favories</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-white hover:text-gray-300" href="{{route('reservation.index')}}">Mes résérvations</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white hover:text-gray-300" href="{{route('admin.voiture.index')}}">Gestion des Voitures</a>
+                    </li>
+                       <li class="nav-item">
+                        <a class="nav-link text-white hover:text-gray-300" href="{{route('admin.category.index')}}">Gestion des Catégories</a>
+                    </li>
                         <li class="nav-item">
                             <form action="/logout" method="POST">
                                 @csrf
                                 <button type="submit" class="nav-link text-white hover:text-gray-300">Déconnexion</button>
                             </form>
                         </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link text-white hover:text-gray-300" href="/login">Connexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white hover:text-gray-300" href="/register">Inscription</a>
-                        </li>
-                    @endif
                 </ul>
             </div>
         </div>
     </nav>
 </header>
-<main>
-@yield('content')
-</main>
 
-<!-- JavaScript for Bootstrap -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<footer class="py-8 mb-0">
-  <div class="container mx-auto text-center">
-      <p>&copy; 2024 LocationVoiture - Tous droits réservés.</p>
-  </div>
-</footer>
-</body>
-</html>
+
+      <main>
+      <div class="container mt-5">
+            <h2>Bienvenue dans le Back Office</h2>
+            <p>Ici, vous pouvez gérer les utilisateurs, les véhicules les catégories et plus encore.</p>
+        </div>
+        </main>

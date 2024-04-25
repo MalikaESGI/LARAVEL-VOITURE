@@ -2,48 +2,84 @@
 
 @section('content')
 
-<style>
-  .carousel-item img {
-    height: 600px; 
-    object-fit: cover; 
-  }
-</style>
-
-<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="10000">
-      <img src="https://photo-voiture.motorlegend.com/hd/bmw-m2-f87-coupe-cs-3-0-450-ch-126517.jpg" class="d-block w-100" alt="img 1">
-    </div>
-    <div class="carousel-item" data-bs-interval="2000">
-    <img src="https://www.10wallpaper.com/wallpaper/1366x768/1607/2017_Mercedes-AMG_GTR_Luxury_Auto_HD_Wallpaper_05_1366x768.jpg" class="d-block w-100 " alt="img 2">
+<!-- Hero Section -->
+<div class="relative py-24 px-6 bg-white" style="background-image: url('https://source.unsplash.com/1600x900/?car'); background-size: cover; background-position: center;">
+  <div class="absolute inset-0 bg-black opacity-50"></div>
+  <div class="container mx-auto text-center text-white relative z-10">
+      <h1 class="text-5xl font-bold mb-4">Louez une voiture au meilleur prix</h1>
+      <p class="text-lg mb-8">Des véhicules pour tous vos besoins</p>
+      <a  href="{{ auth()->user() ?  route('voiture.index') : '/login'}}" class="bg-black text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-800 transition">Réserver maintenant</a>
+  </div>
 </div>
-    <div class="carousel-item">
-      <img src="https://www.motoringresearch.com/wp-content/uploads/2022/10/2_SPECTRE-UNVEILED-%E2%80%93-THE-FIRST-FULLY-ELECTRIC-ROLLS-ROYCE_FRONT-3_4-1.jpg" class="d-block w-100" alt="img 3">
+
+<!-- Services Section -->
+<section class="py-20 bg-gray-200">
+  <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+      <!-- Service 1 -->
+      <div class="bg-white shadow-lg rounded-lg p-8 text-center">
+          <h2 class="text-2xl font-bold mb-4">Large choix de véhicules</h2>
+          <p class="text-lg">Trouvez la voiture qui vous convient parmi notre large sélection de véhicules.</p>
+      </div>
+      
+      <!-- Service 2 -->
+      <div class="bg-white shadow-lg rounded-lg p-8 text-center">
+          <h2 class="text-2xl font-bold mb-4">Tarifs compétitifs</h2>
+          <p class="text-lg">Profitez de nos tarifs compétitifs pour tous vos besoins de location de voiture.</p>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="bg-white shadow-lg rounded-lg p-8 text-center">
+          <h2 class="text-2xl font-bold mb-4">Service client 24/7</h2>
+          <p class="text-lg">Notre équipe est à votre disposition 24/7 pour répondre à toutes vos questions.</p>
+      </div>
+  </div>
+</section>
+
+<!-- Latest Cars Section -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto my-10">
+    <h2 class="text-3xl font-semibold mb-6">Nos dernières voitures</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      @if(isset($voitures))
+        @foreach ($voitures as $voiture)
+         
+            @include('shared.card')
+          
+        @endforeach
+      @else
+        <p class="text-center">Aucune voiture disponible</p>
+      @endif
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+</section>
 
-<div class="container">
+<!-- Testimonials Section -->
+<section class="py-20 bg-gray-100">
+  <div class="container mx-auto">
+    <h2 class="text-3xl font-semibold mb-6 text-center">Avis de nos clients</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- Testimonial 1 -->
+      <div class="bg-white rounded-lg shadow-lg p-8">
+        <p class="text-lg">"Excellent service et large choix de véhicules. Je recommande!"</p>
+        <p class="text-gray-600 mt-4">- Jean Dupont</p>
+      </div>
 
-<h2>Nos dernières voitures<h2>
-<div class="row">
-@if(isset($voitures))
-    @foreach ($voitures as $voiture)
-        <div class="col">
-            @include('shared.card')
-        </div>
-    @endforeach
-@else
-    <p>Aucune voiture disponible</p>
-@endif
-</div>
-</div>
+      <!-- Testimonial 2 -->
+      <div class="bg-white rounded-lg shadow-lg p-8">
+        <p class="text-lg">"Rapide, efficace et tarifs compétitifs. Parfait pour mes déplacements professionnels."</p>
+        <p class="text-gray-600 mt-4">- Marie Martin</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-24 bg-black text-white">
+  <div class="container mx-auto text-center">
+    <h2 class="text-4xl font-semibold mb-4">Vous êtes prêt à louer une voiture ?</h2>
+    <p class="text-lg mb-8">Réservez dès maintenant et bénéficiez des meilleurs tarifs !</p>
+   <a href="{{ auth()->user() ?  route('voiture.index') : '/login'}}" class="bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-200 transition">Réserver maintenant </a>
+  </div>
+</section>  
+
 @endsection

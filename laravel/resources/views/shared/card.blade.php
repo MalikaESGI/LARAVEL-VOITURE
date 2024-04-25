@@ -6,8 +6,12 @@
   <img src="{{$voiture->image}}" class="card-img-top" alt="voiture" style="width:auto;height:200px;">
   <div class="card-body">
     <h5 class="card-title">{{$voiture->marque}}, {{$voiture->model}}</h5>
-    <p class="card-text">{{$voiture->prix_location_journalier}}</p>
-    <a href="#" class="btn btn-primary">Voir</a>
+    <p class="card-text">Prix par jour: <strong>{{$voiture->prix_location_journalier}}€</strong></p>
+     @if($voiture->reserver === true)
+       La voiture est résérver
+     @else
+    <a href="{{ route('reservation.create', ['voiture_id' => $voiture->id]) }}" class="bg-black text-white px-4 py-2 rounded-md hover:bg-opacity-80 transition duration-300 text-decoration-none"><span class="animate-pulse">Réserver</span></a>
+    @endif
   </div>
 </div>
 

@@ -53,6 +53,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Voiture::class, 'favorites', 'user_id', 'voiture_id');
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
     
 
 }
